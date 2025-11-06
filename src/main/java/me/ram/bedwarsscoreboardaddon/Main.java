@@ -74,14 +74,15 @@ public class Main extends JavaPlugin {
 	}
 
 	public void onEnable() {
-		if (!getDescription().getName().equals("BedwarsScoreBoardAddon") || !getDescription().getVersion().equals(getVersion()) || !getDescription().getAuthors().contains("Ram")) {
-			try {
-				new Exception("Please don't edit plugin.yml!").printStackTrace();
-			} catch (Exception e) {
-			}
-			Bukkit.getPluginManager().disablePlugin(this);
-			return;
-		}
+// 这是tm傻逼原作者留下的验证
+//		if (!getDescription().getName().equals("BedwarsScoreBoardAddon") || !getDescription().getVersion().equals(getVersion()) || !getDescription().getAuthors().contains("Ram")) {
+//			try {
+//				new Exception("Please don't edit plugin.yml!").printStackTrace();
+//			} catch (Exception e) {
+//			}
+//			Bukkit.getPluginManager().disablePlugin(this);
+//			return;
+//		}
 		instance = this;
 		arenaManager = new ArenaManager();
 		editHolographicManager = new EditHolographicManager();
