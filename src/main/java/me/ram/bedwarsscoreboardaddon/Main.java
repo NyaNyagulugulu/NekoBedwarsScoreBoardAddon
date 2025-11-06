@@ -101,10 +101,11 @@ public class Main extends JavaPlugin {
 					printMessage("§7 ");
 					printMessage("§f  " + getLocaleConfig().getLanguage("version") + ": §a" + Main.getVersion());
 					printMessage("§7 ");
-					printMessage("§f  " + getLocaleConfig().getLanguage("author") + ": §aRam");
+					printMessage("§f  " + getLocaleConfig().getLanguage("author") + ": §a不穿胖次の小奶猫");
 					printMessage("§7 ");
-					printMessage("§f  " + getLocaleConfig().getLanguage("website") + ": §ehttps://github.com/TheRamU/BedwarsScoreBoardAddon");
+					printMessage("§f  " + getLocaleConfig().getLanguage("website") + ": §ehttps://github.com/NyaNyagulugulu/NekoBedwarsScoreBoardAddon");
 					printMessage("§7 ");
+					printMessage("§f  " + getLocaleConfig().getLanguage("cnm") + ": §e§l源作者他妈大傻逼。我操你妈的URam发项目不带着pom或者kts");
 					printMessage("§f===========================================================");
 					init();
 				}

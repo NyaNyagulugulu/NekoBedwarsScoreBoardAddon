@@ -29,6 +29,7 @@ public class LocaleConfig {
 			language.put("version", "版本");
 			language.put("author", "作者");
 			language.put("website", "网站");
+			language.put("cnm", "傻逼原作者");
 			language.put("loading", "§f开始加载插件...");
 			language.put("loading_failed", "§c插件加载失败！");
 			language.put("bedwarsrel_incompatible", "§c错误: §f暂不兼容该版本 §aBedwarsRel§f！");
@@ -60,6 +61,7 @@ public class LocaleConfig {
 			language.put("version", "Version");
 			language.put("author", "Author");
 			language.put("website", "Website");
+			language.put("cnm", "傻逼原作者");
 			language.put("loading", "§fInitialization...");
 			language.put("loading_failed", "§cInitialization failed!");
 			language.put("bedwarsrel_incompatible", "§cError: §fTemporarily incompatible with this version of §aBedwarsRel§f!");
@@ -91,6 +93,7 @@ public class LocaleConfig {
 			language.put("version", "版本");
 			language.put("author", "作者");
 			language.put("website", "網站");
+			language.put("cnm", "傻逼原作者");
 			language.put("loading", "§f開始加載插件...");
 			language.put("loading_failed", "§c插件加載失敗！");
 			language.put("bedwarsrel_incompatible", "§c錯誤: §f暫不兼容該版本 §aBedwarsRel§f！");
