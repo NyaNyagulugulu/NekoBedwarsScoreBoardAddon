@@ -99,12 +99,8 @@ public class Respawn {
 		PacketContainer packet = man.createPacket(PacketType.Play.Server.GAME_STATE_CHANGE);
 		packet.getIntegers().write(0, 3);
 		packet.getFloat().write(0, (float) mode);
-		try {
-			man.sendServerPacket(player, packet, false);
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		}
-	}
+        man.sendServerPacket(player, packet, false);
+    }
 
 	public void onRespawn(Player player, boolean rejoin) {
 		if (!Config.respawn_enabled || game.isSpectator(player) || (game.getPlayerTeam(player).isDead(game) && !rejoin) || players.contains(player)) {
@@ -234,25 +230,81 @@ public class Respawn {
 	}
 
 	private void hidePlayer(Player p1, Player p2) {
+
 		if (p1.getUniqueId().equals(p2.getUniqueId())) {
+
 			return;
+
 		}
-		if (BedwarsRel.getInstance().getCurrentVersion().startsWith("v1_12")) {
-			p1.hidePlayer(Main.getInstance(), p2);
-		} else {
-			p1.hidePlayer(p2);
+
+		try {
+
+			if (BedwarsRel.getInstance().getCurrentVersion().startsWith("v1_12")) {
+
+				p1.hidePlayer(Main.getInstance(), p2);
+
+			} else {
+
+				p1.hidePlayer(p2);
+
+			}
+
+		} catch (NoSuchMethodError error) {
+
+			// Fallback for older versions that require plugin instance
+
+			try {
+
+				p1.hidePlayer(Main.getInstance(), p2);
+
+			} catch (NoSuchMethodError e) {
+
+				p1.hidePlayer(p2);
+
+			}
+
 		}
+
 	}
 
+
+
 	private void showPlayer(Player p1, Player p2) {
+
 		if (p1.getUniqueId().equals(p2.getUniqueId())) {
+
 			return;
+
 		}
-		if (BedwarsRel.getInstance().getCurrentVersion().startsWith("v1_12")) {
-			p1.showPlayer(Main.getInstance(), p2);
-		} else {
-			p1.showPlayer(p2);
+
+		try {
+
+			if (BedwarsRel.getInstance().getCurrentVersion().startsWith("v1_12")) {
+
+				p1.showPlayer(Main.getInstance(), p2);
+
+			} else {
+
+				p1.showPlayer(p2);
+
+			}
+
+		} catch (NoSuchMethodError error) {
+
+			// Fallback for older versions that require plugin instance
+
+			try {
+
+				p1.showPlayer(Main.getInstance(), p2);
+
+			} catch (NoSuchMethodError e) {
+
+				p1.showPlayer(p2);
+
+			}
+
 		}
+
 	}
 
 	private void hideInventory(Player player) {
@@ -285,10 +337,6 @@ public class Respawn {
 		packet.getIntegers().write(0, 0);
 		packet.getIntegers().write(1, slot);
 		packet.getItemModifier().write(0, new ItemStack(Material.AIR));
-		try {
-			man.sendServerPacket(player, packet);
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
-		}
-	}
+        man.sendServerPacket(player, packet);
+    }
 }

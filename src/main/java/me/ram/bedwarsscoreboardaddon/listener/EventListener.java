@@ -386,10 +386,23 @@ public class EventListener implements Listener {
 					if (player.getInventory().getItemInHand().isSimilar(itemStack)) {
 						player.getInventory().setItemInHand(new ItemStack(Material.AIR));
 					}
-				} else if (player.getInventory().getItemInMainHand().isSimilar(itemStack)) {
-					player.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
-				} else if (player.getInventory().getItemInOffHand().isSimilar(itemStack)) {
-					player.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
+				} else {
+					try {
+						if (player.getInventory().getItemInMainHand().isSimilar(itemStack)) {
+							player.getInventory().setItemInMainHand(new ItemStack(Material.AIR));
+						}
+					} catch (NoSuchMethodError error) {
+						if (player.getInventory().getItemInHand().isSimilar(itemStack)) {
+							player.getInventory().setItemInHand(new ItemStack(Material.AIR));
+						}
+					}
+					try {
+						if (player.getInventory().getItemInOffHand().isSimilar(itemStack)) {
+							player.getInventory().setItemInOffHand(new ItemStack(Material.AIR));
+						}
+					} catch (NoSuchMethodError error) {
+						// OffHand not available in this version
+					}
 				}
 			}
 			if (Config.invisibility_player_enabled) {

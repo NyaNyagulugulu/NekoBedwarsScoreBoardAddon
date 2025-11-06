@@ -93,16 +93,16 @@ public class CounterOffensiveTrap implements Upgrade {
 		}
 	}
 
-	private PotionEffect getPotionEffect(Player player, PotionEffectType type) {
-		try {
-			return player.getPotionEffect(type);
-		} catch (Exception e) {
-		}
-		for (PotionEffect effect : player.getActivePotionEffects()) {
-			if (effect.getType().equals(type)) {
-				return effect;
-			}
-		}
-		return null;
+		private PotionEffect getPotionEffect(Player player, PotionEffectType type) {
+		try {
+			return (PotionEffect) Player.class.getMethod("getPotionEffect", PotionEffectType.class).invoke(player, type);
+		} catch (Exception e) {
+		}
+		for (PotionEffect effect : player.getActivePotionEffects()) {
+			if (effect.getType().equals(type)) {
+				return effect;
+			}
+		}
+		return null;
 	}
 }

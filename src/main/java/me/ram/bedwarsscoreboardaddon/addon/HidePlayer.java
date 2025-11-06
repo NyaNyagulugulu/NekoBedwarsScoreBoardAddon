@@ -108,25 +108,43 @@ public class HidePlayer implements Listener {
 		}
 	}
 
-	private void hidePlayer(Player p1, Player p2) {
-		if (p1.getUniqueId().equals(p2.getUniqueId())) {
-			return;
-		}
-		if (BedwarsRel.getInstance().getCurrentVersion().startsWith("v1_12")) {
-			p1.hidePlayer(Main.getInstance(), p2);
-		} else {
-			p1.hidePlayer(p2);
-		}
-	}
-
-	private void showPlayer(Player p1, Player p2) {
-		if (p1.getUniqueId().equals(p2.getUniqueId())) {
-			return;
-		}
-		if (BedwarsRel.getInstance().getCurrentVersion().startsWith("v1_12")) {
-			p1.showPlayer(Main.getInstance(), p2);
-		} else {
-			p1.showPlayer(p2);
-		}
+	private void hidePlayer(Player p1, Player p2) {
+		if (p1.getUniqueId().equals(p2.getUniqueId())) {
+			return;
+		}
+		try {
+			if (BedwarsRel.getInstance().getCurrentVersion().startsWith("v1_12")) {
+				p1.hidePlayer(Main.getInstance(), p2);
+			} else {
+				p1.hidePlayer(p2);
+			}
+		} catch (NoSuchMethodError error) {
+			// Fallback for older versions that require plugin instance
+			try {
+				p1.hidePlayer(Main.getInstance(), p2);
+			} catch (NoSuchMethodError e) {
+				p1.hidePlayer(p2);
+			}
+		}
+	}
+
+	private void showPlayer(Player p1, Player p2) {
+		if (p1.getUniqueId().equals(p2.getUniqueId())) {
+			return;
+		}
+		try {
+			if (BedwarsRel.getInstance().getCurrentVersion().startsWith("v1_12")) {
+				p1.showPlayer(Main.getInstance(), p2);
+			} else {
+				p1.showPlayer(p2);
+			}
+		} catch (NoSuchMethodError error) {
+			// Fallback for older versions that require plugin instance
+			try {
+				p1.showPlayer(Main.getInstance(), p2);
+			} catch (NoSuchMethodError e) {
+				p1.showPlayer(p2);
+			}
+		}
 	}
 }

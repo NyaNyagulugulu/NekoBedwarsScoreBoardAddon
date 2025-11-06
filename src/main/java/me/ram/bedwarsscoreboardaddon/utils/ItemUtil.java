@@ -46,14 +46,16 @@ public class ItemUtil {
 		item.setItemMeta(meta);
 	}
 
-	public static void setItemUnbreak(ItemStack item, boolean unbreak) {
-		ItemMeta meta = item.getItemMeta();
-		try {
-			meta.setUnbreakable(unbreak);
-		} catch (Exception e) {
-			meta.spigot().setUnbreakable(unbreak);
-		}
-		item.setItemMeta(meta);
+	public static void setItemUnbreak(ItemStack item, boolean unbreak) {
+		ItemMeta meta = item.getItemMeta();
+		try {
+			// For 1.8.8, we need to use spigot().setUnbreakable directly
+			meta.spigot().setUnbreakable(unbreak);
+		} catch (Exception e) {
+			// Fallback for versions that don't support unbreakable items
+			meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+		}
+		item.setItemMeta(meta);
 	}
 
 	public static void addItemFlags(ItemStack item, ItemFlag... flags) {
