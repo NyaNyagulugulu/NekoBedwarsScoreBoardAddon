@@ -22,7 +22,7 @@ public class Commands implements CommandExecutor {
 			if (args.length == 0) {
 				sender.sendMessage("§f=====================================================");
 				sender.sendMessage("");
-				sender.sendMessage("§b               BedwarsScoreBoardAddon");
+				sender.sendMessage("§b               NekoBwScoreBoardAddon");
 				sender.sendMessage("");
 				sender.sendMessage("§f  " + Main.getInstance().getLocaleConfig().getLanguage("version") + ": §a" + Main.getVersion());
 				sender.sendMessage("");
@@ -36,7 +36,7 @@ public class Commands implements CommandExecutor {
 			if (args[0].equalsIgnoreCase("help")) {
 				sender.sendMessage("§f=====================================================");
 				sender.sendMessage("");
-				sender.sendMessage("§b§l BedwarsScoreBoardAddon §fv" + Main.getVersion() + "  §7by 不穿胖次の小奶猫");
+				sender.sendMessage("§b§l NekoBwScoreBoardAddon §fv" + Main.getVersion() + "  §7by 不穿胖次の小奶猫");
 				sender.sendMessage("");
 				Config.getLanguageList("commands.help").forEach(line -> {
 					sender.sendMessage(line);
