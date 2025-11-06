@@ -6,11 +6,11 @@
 #  |____/ \___|\__,_| \_/\_/ \__,_|_|  |___/_____/ \___\___/|_|  \___|____/ \___/ \__,_|_|  \__,_/_/    \_\__,_|\__,_|\___/|_| |_|
 #
 #
-# By 不穿胖次の小奶猫
+# By Ram
 #
-# 更新时间: 2025年11月6日
+# 更新时间: 2021年10月31日
 #
-# 网站: https://github.com/NyaNyagulugulu/NekoBedwarsScoreBoardAddon
+# 网站: https://github.com/TheRamU/BedwarsScoreBoardAddon
 #
 
 #配置版本 (请勿修改!)
@@ -21,11 +21,10 @@ version: 23
 update_check:
 
   #是否启用
-  enabled:  false
+  enabled:  true
 
   #向在线管理员报告版本更新
-  report: false
-  # 不用开，多去GitHub看看。有什么好的建议可以发issues
+  report: true
 
 
 #区域语言
@@ -83,15 +82,15 @@ chat_format:
 
     #旁观者
     spectator: true
-    
+
 
   #全体聊天前缀
   all_prefix:
-  - "!"
-  - "#"
-  - "@"
+    - "!"
+    - "#"
+    - "@"
 
-    #大厅聊天格式
+  #大厅聊天格式
   lobby: "&6[%luckperms_suffix%&6]{player} > {message}"
 
   #已选择队伍大厅聊天格式
@@ -131,10 +130,10 @@ timecommand:
   #
   # 指令名称
   # 1:
-  # 
+  #
   #   当游戏剩余多少时间时执行命令
   #   gametime: 3600
-  #  
+  #
   #   执行的命令
   #   command:
   #   - ""
@@ -146,7 +145,7 @@ timecommand:
 
     #执行的命令
     command:
-    - ""
+      - ""
 
 
 #队伍选择菜单
@@ -173,13 +172,13 @@ select_team:
 
     #描述
     lore:
-    - ""
-    - "&f玩家: &e{players}&7/&e{maxplayers}"
-    - ""
-    - "&f玩家列表:"
-    - "  {color}{players_list}"
-    - ""
-    - "{status}"
+      - ""
+      - "&f玩家: &e{players}&7/&e{maxplayers}"
+      - ""
+      - "&f玩家列表:"
+      - "  {color}{players_list}"
+      - ""
+      - "{status}"
 
 
 #清除大厅方块
@@ -368,15 +367,15 @@ play_sound:
 
     #游戏开始
     start:
-    - ENDERDRAGON_GROWL,1,1
+      - ENDERDRAGON_GROWL,1,1
 
     #死亡
     death: {}
 
     #击杀
     kill:
-    - CAT_MEOW,1,1
-    - WOLF_BARK,1,1
+      - CAT_MEOW,1,1
+      - WOLF_BARK,1,1
 
     #资源升级
     upgrade: {}
@@ -386,22 +385,22 @@ play_sound:
 
     #资源不足
     no_resource:
-    - ENDERMAN_TELEPORT,1,0.5
+      -
 
-    #启用凋零弓
+      #启用凋零弓
     enable_witherbow:
-    - ENDERDRAGON_GROWL,1,1
+      - ENDERDRAGON_GROWL,1,1
 
     #使用凋零弓
     witherbow:
-    - WITHER_HURT,1,0
+      - WITHER_HURT,1,0
 
     #死亡模式
     deathmode: {}
 
     #游戏结束
     over:
-    - ENDERDRAGON_DEATH,1,1
+      - ENDERDRAGON_DEATH,1,1
 
 
 #旁观设置
@@ -508,22 +507,20 @@ compass:
   #物品描述
   lore:
     send_message:
-    - ""
-    - "&e点击发送！"
+      - ""
+      - "&e点击发送！"
     select_team:
-    - "&7您可以选择队伍"
-    - ""
-    - "&e点击选择！"
+      - "&7您可以选择队伍"
+      - ""
+      - "&e点击选择！"
     select_resources:
-    - "&7您可以选择资源"
-    - ""
-    - "&e点击选择！"
+      - "&7您可以选择资源"
+      - ""
+      - "&e点击选择！"
 
   #资源
   resources:
-    CLAY_BRICK: "&4红砖"
     IRON_INGOT: "&7铁锭"
-    GOLD_INGOT: "&6金锭"
     DIAMOND: "&b钻石"
     EMERALD: "&2绿宝石"
 
@@ -670,7 +667,7 @@ respawn:
 giveitem:
 
   #死亡后不重置护甲
-  keeparmor: false
+  keeparmor: true
 
   #护甲
   armor:
@@ -686,18 +683,18 @@ giveitem:
       give: true
 
       #护甲是否可以脱下
-      move: true
+      move: false
 
       #物品
       item:
-      - type: TEAM_ARMOR
-        meta:
-          ==: ItemMeta
-          meta-type: LEATHER_ARMOR
-          enchants:
-            WATER_WORKER: 1
-          Unbreakable: true
-        probability: 1
+        - type: TEAM_ARMOR
+          meta:
+            ==: ItemMeta
+            meta-type: LEATHER_ARMOR
+            enchants:
+              WATER_WORKER: 1
+            Unbreakable: true
+          probability: 1
 
     #胸甲
     chestplate:
@@ -710,16 +707,16 @@ giveitem:
       give: true
 
       #护甲是否可以脱下
-      move: true
+      move: false
 
       #物品
       item:
-      - type: TEAM_ARMOR
-        meta:
-          ==: ItemMeta
-          meta-type: LEATHER_ARMOR
-          Unbreakable: true
-        probability: 1
+        - type: TEAM_ARMOR
+          meta:
+            ==: ItemMeta
+            meta-type: LEATHER_ARMOR
+            Unbreakable: true
+          probability: 1
 
     #护腿
     leggings:
@@ -732,16 +729,16 @@ giveitem:
       give: true
 
       #护甲是否可以脱下
-      move: true
+      move: false
 
       #物品
       item:
-      - type: TEAM_ARMOR
-        meta:
-          ==: ItemMeta
-          meta-type: LEATHER_ARMOR
-          Unbreakable: true
-        probability: 1
+        - type: TEAM_ARMOR
+          meta:
+            ==: ItemMeta
+            meta-type: LEATHER_ARMOR
+            Unbreakable: true
+          probability: 1
 
     #靴子
     boots:
@@ -754,16 +751,16 @@ giveitem:
       give: true
 
       #护甲是否可以脱下
-      move: true
+      move: false
 
       #物品
       item:
-      - type: TEAM_ARMOR
-        meta:
-          ==: ItemMeta
-          meta-type: LEATHER_ARMOR
-          Unbreakable: true
-        probability: 1
+        - type: TEAM_ARMOR
+          meta:
+            ==: ItemMeta
+            meta-type: LEATHER_ARMOR
+            Unbreakable: true
+          probability: 1
 
   #物品栏
   #
@@ -778,10 +775,10 @@ giveitem:
   #    #  respawn     重生时给予
   #    #  false       不给予
   #    give: true
-  #   
+  #
   #    #物品所在背包的位置
   #    slot: 0
-  #    
+  #
   #    #物品
   #    item:
   #    - type: WOOD_SWORD
@@ -807,12 +804,12 @@ giveitem:
 
       #物品
       item:
-      - type: WOOD_SWORD
-        meta:
-          ==: ItemMeta
-          meta-type: UNSPECIFIC
-          Unbreakable: true
-        probability: 1
+        - type: WOOD_SWORD
+          meta:
+            ==: ItemMeta
+            meta-type: UNSPECIFIC
+            Unbreakable: true
+          probability: 1
 
 #血量设置
 sethealth:
@@ -925,7 +922,6 @@ resourcelimit:
 
   #设置上限
   limit:
-    - 'CLAY_BRICK,45'
     - 'IRON_INGOT,30'
     - 'GOLD_INGOT,5'
     - 'DIAMOND,8'
@@ -1025,9 +1021,7 @@ deathitem:
 
   #启用物品
   items:
-    - 'CLAY_BRICK'
     - 'IRON_INGOT'
-    - 'GOLD_INGOT'
     - 'EMERALD'
     - 'DIAMOND'
 
@@ -1045,7 +1039,7 @@ deathitem:
 nobreakbed:
 
   #是否启用
-  enabled: false
+  enabled: true
 
   #当游戏剩余多少秒时取消禁止
   gametime: 3300
@@ -1073,7 +1067,7 @@ spawn_no_build:
     enabled: true
 
     #范围
-    range: 2
+    range: 5
 
   #资源点保护
   resource:
@@ -1082,7 +1076,7 @@ spawn_no_build:
     enabled: true
 
     #范围
-    range: 2
+    range: 5
 
   #提示
   message: "&c你不能在这里放置方块！"
@@ -1219,7 +1213,7 @@ timer:
 
 
 #设定计划信息
-#变量 {plan_<编号>} 的内容 
+#变量 {plan_<编号>} 的内容
 #
 #格式:
 # 编号
@@ -1227,7 +1221,7 @@ timer:
 #
 #   #当游戏剩余多少时间时开始
 #   start_time: 3600
-#  
+#
 #   #当游戏剩余多少时间时结束
 #   end_time: 0
 #
@@ -1419,10 +1413,9 @@ lobby_scoreboard:
     - ""
     - "{state}"
     - ""
-    - "&f模式:&a4v4v4v4"
-    - "&f版本:&7v1.0"
+    - "&f版本:&7v1.2"
     - ""
-    - "&ewww.minecraft.net"
+    - "&e梦幻次元"
 
 
 #计分板设置
@@ -1544,7 +1537,7 @@ scoreboard:
       - "&f最终击杀: &a{finalkills}"
       - "&f已破坏床数: &a{beds}"
       - ""
-      - "&ewww.minecraft.net"
+      - "&e梦幻次元"
 
     #当8个队伍时
     8:
@@ -1554,4 +1547,4 @@ scoreboard:
       - ""
       - "{team_status}"
       - ""
-      - "&ewww.minecraft.net"
+      - "&e梦幻次元"

@@ -185,8 +185,7 @@ public class TabListManager implements Listener {
                 String header = ChatColor.GOLD + "" + ChatColor.BOLD + "» " + ChatColor.WHITE + "" + ChatColor.BOLD + serverName + " " + ChatColor.GOLD + "" + ChatColor.BOLD + "«\n" +
                                ChatColor.GREEN + "游戏中";
                 String footer = ChatColor.GRAY + "» " + ChatColor.AQUA + qqGroup + ChatColor.GRAY + " «\n" + 
-                               ChatColor.GRAY + "对局人数: " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size() + " " +
-                               ChatColor.GRAY + "| 游戏地图: " + ChatColor.WHITE + (game != null ? game.getName() : "无");
+                               ChatColor.GRAY + "对局人数: " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size();
                 
                 // 设置Tab列表的页眉和页脚
                 sendTabListHeaderFooter(player, header, footer);
@@ -203,8 +202,7 @@ public class TabListManager implements Listener {
                 String header = ChatColor.GOLD + "" + ChatColor.BOLD + "» " + ChatColor.WHITE + "" + ChatColor.BOLD + serverName + " " + ChatColor.GOLD + "" + ChatColor.BOLD + "«\n" +
                                ChatColor.YELLOW + "等待中";
                 String footer = ChatColor.GRAY + "» " + ChatColor.AQUA + qqGroup + ChatColor.GRAY + " «\n" + 
-                               ChatColor.GRAY + "在线人数: " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size() + " " + 
-                               ChatColor.GRAY + "| 游戏数: " + ChatColor.WHITE + BedwarsRel.getInstance().getGameManager().getGames().size();
+                               ChatColor.GRAY + "对局人数: " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size();
                 
                 // 设置Tab列表的页眉和页脚
                 sendTabListHeaderFooter(player, header, footer);
@@ -217,8 +215,7 @@ public class TabListManager implements Listener {
             String header = ChatColor.GOLD + "" + ChatColor.BOLD + "» " + ChatColor.WHITE + "" + ChatColor.BOLD + serverName + " " + ChatColor.GOLD + "" + ChatColor.BOLD + "«\n" +
                            ChatColor.YELLOW + "大厅";
             String footer = ChatColor.GRAY + "» " + ChatColor.AQUA + qqGroup + ChatColor.GRAY + " «\n" + 
-                           ChatColor.GRAY + "在线人数: " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size() + " " + 
-                           ChatColor.GRAY + "| 游戏数: " + ChatColor.WHITE + BedwarsRel.getInstance().getGameManager().getGames().size();
+                           ChatColor.GRAY + "对局人数: " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size();
             
             // 设置Tab列表的页眉和页脚
 

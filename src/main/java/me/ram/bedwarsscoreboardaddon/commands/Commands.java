@@ -26,7 +26,9 @@ public class Commands implements CommandExecutor {
 				sender.sendMessage("");
 				sender.sendMessage("§f  " + Main.getInstance().getLocaleConfig().getLanguage("version") + ": §a" + Main.getVersion());
 				sender.sendMessage("");
-				sender.sendMessage("§f  " + Main.getInstance().getLocaleConfig().getLanguage("author") + ": §aRam");
+				sender.sendMessage("§f  " + Main.getInstance().getLocaleConfig().getLanguage("author") + ": §a不穿胖次の小奶猫");
+				sender.sendMessage("");
+				sender.sendMessage("§f  " + Main.getInstance().getLocaleConfig().getLanguage("cnm") + ": §e§l源作者他妈大傻逼。我操你妈的URam发项目不带着pom或者kts");
 				sender.sendMessage("");
 				sender.sendMessage("§f=====================================================");
 				return true;
@@ -34,7 +36,7 @@ public class Commands implements CommandExecutor {
 			if (args[0].equalsIgnoreCase("help")) {
 				sender.sendMessage("§f=====================================================");
 				sender.sendMessage("");
-				sender.sendMessage("§b§l BedwarsScoreBoardAddon §fv" + Main.getVersion() + "  §7by Ram");
+				sender.sendMessage("§b§l BedwarsScoreBoardAddon §fv" + Main.getVersion() + "  §7by 不穿胖次の小奶猫");
 				sender.sendMessage("");
 				Config.getLanguageList("commands.help").forEach(line -> {
 					sender.sendMessage(line);
