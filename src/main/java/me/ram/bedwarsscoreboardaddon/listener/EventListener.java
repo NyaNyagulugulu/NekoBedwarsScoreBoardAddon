@@ -430,35 +430,36 @@ public class EventListener implements Listener {
 		}
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onInteract(PlayerInteractEvent e) {
-		// 检测右键床的事件并取消
-		if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getClickedBlock() != null) {
-			Material clickedType = e.getClickedBlock().getType();
-			if (isBedMaterial(clickedType)) {
-				e.setCancelled(true);
-				return;
-			}
-		}
-		
-		Main.getInstance().getArenaManager().getArenas().values().forEach(arena -> {
-			arena.onInteract(e);
-		});
-		if (e.isCancelled()) {
-			return;
-		}
-		if (e.getItem() == null || !(e.getItem().getType() == Material.WATER_BUCKET || e.getItem().getType() == Material.LAVA_BUCKET) || e.getAction() != Action.RIGHT_CLICK_BLOCK) {
-			return;
-		}
-		Player player = e.getPlayer();
-		Game game = BedwarsRel.getInstance().getGameManager().getGameOfPlayer(player);
-		if (game == null) {
-			return;
-		}
-		if (BedwarsUtil.isSpectator(game, player) || player.getGameMode() == GameMode.SPECTATOR) {
-			return;
-		}
-		game.getRegion().addPlacedBlock(e.getClickedBlock().getRelative(e.getBlockFace()), null);
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = false)
+	public void onInteract(PlayerInteractEvent e) {
+		// 检测右键床的事件并取消 - 使用最高优先级确保最先处理
+		if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getClickedBlock() != null) {
+			Material clickedType = e.getClickedBlock().getType();
+			if (isBedMaterial(clickedType)) {
+				e.setCancelled(true);
+				// 阻止任何后续的床交互处理，包括消息发送
+				return;
+			}
+		}
+		
+		Main.getInstance().getArenaManager().getArenas().values().forEach(arena -> {
+			arena.onInteract(e);
+		});
+		if (e.isCancelled()) {
+			return;
+		}
+		if (e.getItem() == null || !(e.getItem().getType() == Material.WATER_BUCKET || e.getItem().getType() == Material.LAVA_BUCKET) || e.getAction() != Action.RIGHT_CLICK_BLOCK) {
+			return;
+		}
+		Player player = e.getPlayer();
+		Game game = BedwarsRel.getInstance().getGameManager().getGameOfPlayer(player);
+		if (game == null) {
+			return;
+		}
+		if (BedwarsUtil.isSpectator(game, player) || player.getGameMode() == GameMode.SPECTATOR) {
+			return;
+		}
+		game.getRegion().addPlacedBlock(e.getClickedBlock().getRelative(e.getBlockFace()), null);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
