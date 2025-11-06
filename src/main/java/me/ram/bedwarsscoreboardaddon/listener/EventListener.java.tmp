@@ -1,0 +1,17 @@
+			}
+		} catch (Exception e) {
+			return null;
+		}
+		return null;
+	}
+	
+	/**
+	 * 检查是否是床类型的方块
+	 * @param material 方块材料
+	 * @return 是否是床
+	 */
+	private boolean isBedMaterial(Material material) {
+		// 1.8.8版本的床材料
+		return material == Material.BED_BLOCK || material.name().endsWith("_BED");
+	}
+}

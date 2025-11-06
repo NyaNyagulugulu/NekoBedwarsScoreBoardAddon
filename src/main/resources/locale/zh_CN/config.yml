@@ -6,11 +6,11 @@
 #  |____/ \___|\__,_| \_/\_/ \__,_|_|  |___/_____/ \___\___/|_|  \___|____/ \___/ \__,_|_|  \__,_/_/    \_\__,_|\__,_|\___/|_| |_|
 #
 #
-# By Ram
+# By 不穿胖次の小奶猫
 #
-# 更新时间: 2021年10月31日
+# 更新时间: 2025年11月6日
 #
-# 网站: https://github.com/TheRamU/BedwarsScoreBoardAddon
+# 网站: https://github.com/NyaNyagulugulu/NekoBedwarsScoreBoardAddon
 #
 
 #配置版本 (请勿修改!)
@@ -21,10 +21,11 @@ version: 23
 update_check:
 
   #是否启用
-  enabled:  true
+  enabled:  false
 
   #向在线管理员报告版本更新
-  report: true
+  report: false
+  # 不用开，多去GitHub看看。有什么好的建议可以发issues
 
 
 #区域语言
@@ -90,20 +91,20 @@ chat_format:
   - "#"
   - "@"
 
-  #大厅聊天格式
-  lobby: "{player} > {message}"
+    #大厅聊天格式
+  lobby: "&6[%luckperms_suffix%&6]{player} > {message}"
 
   #已选择队伍大厅聊天格式
-  lobby_team: "{color}{player} &f> {message}"
+  lobby_team: "&6[%luckperms_suffix%&6]{color}{player} &f> {message}"
 
   #游戏中聊天格式
-  ingame: "&7[{color}{team}&7] {color}{player} &f> {message}"
+  ingame: "&7[{color}{team}&7] &6[%luckperms_suffix%&6]{color}{player} &f> {message}"
 
   #游戏中全体聊天格式
-  ingame_all: "&7[&f全体&7] &7[{color}{team}&7] {color}{player} &f> {message}"
+  ingame_all: "&7[&f全体&7] &7[{color}{team}&7] &6[%luckperms_suffix%&6]{color}{player} &f> {message}"
 
   #旁观者聊天格式
-  spectator: "&7[&f旁观者&7] &f{player} > {message}"
+  spectator: "&7[&f旁观者&7]&6[%luckperms_suffix%&6] &f{player} > {message}"
 
 
 #最终击杀显示

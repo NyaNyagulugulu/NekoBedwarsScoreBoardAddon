@@ -256,7 +256,7 @@ public class EventListener implements Listener {
 				WrappedChatComponent chat = e.getPacket().getChatComponents().read(0);
 				String hearts = "";
 				DecimalFormat format = new DecimalFormat("#");
-				double health = killer.getHealth() / killer.getMaxHealth() * killer.getHealthScale();
+				double health = killer.getHealth() / killer.getHealthScale();
 				if (!BedwarsRel.getInstance().getBooleanConfig("hearts-in-halfs", true)) {
 					format = new DecimalFormat("#.#");
 					health /= 2.0;
@@ -432,6 +432,15 @@ public class EventListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onInteract(PlayerInteractEvent e) {
+		// 检测右键床的事件并取消
+		if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getClickedBlock() != null) {
+			Material clickedType = e.getClickedBlock().getType();
+			if (isBedMaterial(clickedType)) {
+				e.setCancelled(true);
+				return;
+			}
+		}
+		
 		Main.getInstance().getArenaManager().getArenas().values().forEach(arena -> {
 			arena.onInteract(e);
 		});
@@ -604,5 +613,15 @@ public class EventListener implements Listener {
 			return null;
 		}
 		return null;
+	}
+	
+	/**
+	 * 检查是否是床类型的方块
+	 * @param material 方块材料
+	 * @return 是否是床
+	 */
+	private boolean isBedMaterial(Material material) {
+		// 1.8.8版本的床材料
+		return material == Material.BED_BLOCK || material.name().endsWith("_BED");
 	}
 }
