@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.ram</groupId>
-    <artifactId>bedwarsscoreboardaddon</artifactId>
-    <version>2.13.1</version>
+    <artifactId>NekoBwScoreBoardAddon</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>BedwarsScoreBoardAddon</name>
+    <name>NekoBwScoreBoardAddon</name>
     <description>A plugin that enhances BedwarsRel with additional features</description>
     <url>https://github.com/TheRamU/BedwarsScoreBoardAddon</url>
 
