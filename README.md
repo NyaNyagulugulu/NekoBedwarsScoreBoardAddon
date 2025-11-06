@@ -11,6 +11,7 @@
 # 我做了什么？
 
 - 补全傻逼原帖作者发布的项目没有pom或者kts!
+- TAB菜单的样式美化
 - 修复了papi变量颜色无法解析!
 - 把那个傻逼没给的依赖全部补全
 - 添加床的右键消息移除
@@ -20,6 +21,18 @@
 - 修复后
 
 ![img_5.png](img/img_5.png)
+
+# 如何使用以及依赖
+
+## 前置和依赖
+
+需要安装BWrel https://github.com/NyaNyagulugulu/NekoBedwarsRel
+
+依赖LP权限组插件并且在对应的组内有`suffix.0`
+
+## 如何使用
+
+将拿到的jar文件丢进plugins目录即可
 
 ## 如何构建？
 打开你的idea。使用java8（1.8）点击右侧的M符号

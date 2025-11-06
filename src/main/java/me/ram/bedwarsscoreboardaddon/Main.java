@@ -23,6 +23,7 @@ import me.ram.bedwarsscoreboardaddon.addon.HidePlayer;
 import me.ram.bedwarsscoreboardaddon.addon.LobbyScoreBoard;
 import me.ram.bedwarsscoreboardaddon.addon.SpawnNoBuild;
 import me.ram.bedwarsscoreboardaddon.addon.Spectator;
+import me.ram.bedwarsscoreboardaddon.addon.TabListManager;
 import me.ram.bedwarsscoreboardaddon.addon.Title;
 import me.ram.bedwarsscoreboardaddon.addon.WitherBow;
 import me.ram.bedwarsscoreboardaddon.arena.Arena;
@@ -59,6 +60,8 @@ public class Main extends JavaPlugin {
 	@Getter
 	private MenuManager menuManager;
 	@Getter
+	private TabListManager tabListManager;
+	@Getter
 	private LocaleConfig localeConfig;
 	@Getter
 	private boolean enabledCitizens;
@@ -88,6 +91,7 @@ public class Main extends JavaPlugin {
 		editHolographicManager = new EditHolographicManager();
 		holographicManager = new HolographicManager();
 		menuManager = new MenuManager();
+		tabListManager = new TabListManager(this);
 		localeConfig = new LocaleConfig();
 		Main.getInstance().getLocaleConfig().loadLocaleConfig();
 		new BukkitRunnable() {
@@ -257,5 +261,6 @@ public class Main extends JavaPlugin {
 		Bukkit.getPluginManager().registerEvents(new EditGame(), this);
 		Bukkit.getPluginManager().registerEvents(new Compass(), this);
 		Bukkit.getPluginManager().registerEvents(new Title(), this);
+		tabListManager.enable();
 	}
 }

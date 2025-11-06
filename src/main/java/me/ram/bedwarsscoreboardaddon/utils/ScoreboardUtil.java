@@ -265,24 +265,25 @@ public class ScoreboardUtil {
 					score_team.setSuffix(Config.playertag_suffix.replace("{color}", team.getChatColor() + "").replace("{color_initials}", team.getChatColor().name().substring(0, 1)).replace("{color_name}", upperInitials(team.getChatColor().name())).replace("{team_initials}", team.getName().substring(0, 1)).replace("{team}", team.getName()));
 				}
 				score_team.setAllowFriendlyFire(false);
-				for (Player pl : team.getPlayers()) {
-					if (!score_team.hasPlayer((OfflinePlayer) pl)) {
-						if (!players.contains(pl.getUniqueId()) || (player_team != null && player_team.getPlayers().contains(pl))) {
-							score_team.addPlayer((OfflinePlayer) pl);
-						} else {
-							String list_name = pl.getPlayerListName();
-							if (list_name == null || list_name.equals(pl.getName())) {
-								String prefix = score_team.getPrefix();
-								String suffix = score_team.getSuffix();
-								prefix = prefix == null ? "" : prefix;
-								suffix = suffix == null ? "" : suffix;
-								String name = prefix + pl.getName() + suffix;
-								if (list_name == null || !name.equals(list_name)) {
-									pl.setPlayerListName(prefix + pl.getName() + suffix);
-								}
-							}
-						}
-					}
+				for (Player pl : team.getPlayers()) {
+					if (!score_team.hasPlayer((OfflinePlayer) pl)) {
+						if (!players.contains(pl.getUniqueId()) || (player_team != null && player_team.getPlayers().contains(pl))) {
+							score_team.addPlayer((OfflinePlayer) pl);
+						} else {
+							String list_name = pl.getPlayerListName();
+							if (list_name == null || list_name.equals(pl.getName())) {
+								String prefix = score_team.getPrefix();
+								String suffix = score_team.getSuffix();
+								prefix = prefix == null ? "" : prefix;
+								suffix = suffix == null ? "" : suffix;
+								String name = prefix + pl.getName() + suffix;
+								if (list_name == null || !name.equals(list_name)) {
+									// 仅当TabListManager未设置Tab名称时才设置
+									// 这样可以避免与新的TabListManager功能冲突
+								}
+							}
+						}
+					}
 				}
 			}
 			// 隐藏隐身玩家Tag
