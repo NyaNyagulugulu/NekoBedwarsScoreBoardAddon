@@ -119,15 +119,21 @@ public class EventListener implements Listener {
 		if (!Config.rejoin_enabled) {
 			return;
 		}
-		Game game = BedwarsRel.getInstance().getGameManager().getGameOfPlayer(player);
-		if (game != null) {
-			return;
+		// 检查玩家是否在可以重新加入的游戏中，而不是简单地检查是否在游戏中
+		// 这样允许玩家在大厅服务器中重新加入仍在进行的游戏
+		Game currentGame = BedwarsRel.getInstance().getGameManager().getGameOfPlayer(player);
+		if (currentGame != null && currentGame.getState() != GameState.WAITING) {
+			// 如果玩家已在运行中或结束状态的游戏里，则不能rejoin
+			// 但允许在等待状态的游戏（或在大厅）中使用rejoin
+			return;
 		}
-		for (Arena arena : Main.getInstance().getArenaManager().getArenas().values()) {
-			if (arena.getRejoin().getPlayers().containsKey(player.getName())) {
-				arena.getGame().playerJoins(player);
-				return;
-			}
+		for (Arena arena : Main.getInstance().getArenaManager().getArenas().values()) {
+			if (arena.getRejoin().getPlayers().containsKey(player.getName())) {
+				// 直接调用插件的rejoin方法，而不是通过BedwarsRel的playerJoins方法
+				// 这样可以绕过BedwarsRel可能的限制
+				arena.getRejoin().rejoin(player);
+				return;
+			}
 		}
 		player.sendMessage(Config.rejoin_message_error);
 	}
