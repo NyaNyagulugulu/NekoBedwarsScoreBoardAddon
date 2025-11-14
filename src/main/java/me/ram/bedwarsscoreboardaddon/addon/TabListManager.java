@@ -89,34 +89,38 @@ public class TabListManager implements Listener {
         }
     }
 
-    /**
-
-     * 更新特定玩家的Tab列表
-
-     */
-
-    public void updatePlayerTabList(Player player) {
-
-        Game game = BedwarsRel.getInstance().getGameManager().getGameOfPlayer(player);
-
-        
-
-        for (Player target : Bukkit.getOnlinePlayers()) {
-
-            String displayName = getPlayerTabDisplayName(target, game);
-
-            // 设置Tab列表中显示的名称
-
-            target.setPlayerListName(displayName);
-
-            
-
-            // 同时更新玩家的显示名称
-
-            target.setDisplayName(displayName);
-
-        }
-
+    /**
+     * 更新特定玩家的Tab列表
+     */
+    public void updatePlayerTabList(Player player) {
+        Game playerGame = BedwarsRel.getInstance().getGameManager().getGameOfPlayer(player);
+        
+        if (playerGame != null) {
+            // 只有当玩家自己在游戏或等待状态时，才应用自定义Tab样式
+            for (Player target : Bukkit.getOnlinePlayers()) {
+                Game targetGame = BedwarsRel.getInstance().getGameManager().getGameOfPlayer(target);
+                
+                if (targetGame != null) {
+                    // 目标玩家在游戏或等待状态中，应用自定义Tab样式
+                    String displayName = getPlayerTabDisplayName(target, targetGame);
+                    // 设置Tab列表中显示的名称
+                    target.setPlayerListName(displayName);
+                    // 同时更新玩家的显示名称
+                    target.setDisplayName(displayName);
+                } else {
+                    // 目标玩家在大厅，重置为原版名称
+                    target.setPlayerListName(null); // 重置为默认名称
+                    target.setDisplayName(target.getName()); // 重置显示名称为原名
+                }
+            }
+        } else {
+            // 如果玩家不在游戏中，完全不修改任何Tab显示，让其他插件控制
+            // 重置所有玩家名称为默认值，避免Tab插件冲突
+            for (Player target : Bukkit.getOnlinePlayers()) {
+                target.setPlayerListName(null);
+                target.setDisplayName(target.getName());
+            }
+        }
     }
 
     
@@ -208,18 +212,8 @@ public class TabListManager implements Listener {
                 sendTabListHeaderFooter(player, header, footer);
             }
         } else {
-            // 玩家不在任何游戏中
+            // 玩家不在任何游戏中，不发送自定义Tab页眉页脚，让玩家看到原版样式
             teamName = ChatColor.GRAY + "大厅";
-            
-            // 大厅中的Tab样式
-            String header = ChatColor.GOLD + "" + ChatColor.BOLD + "» " + ChatColor.WHITE + "" + ChatColor.BOLD + serverName + " " + ChatColor.GOLD + "" + ChatColor.BOLD + "«\n" +
-                           ChatColor.YELLOW + "大厅";
-            String footer = ChatColor.GRAY + "» " + ChatColor.AQUA + qqGroup + ChatColor.GRAY + " «\n" + 
-                           ChatColor.GRAY + "对局人数: " + ChatColor.WHITE + Bukkit.getOnlinePlayers().size();
-            
-            // 设置Tab列表的页眉和页脚
-
-            sendTabListHeaderFooter(player, header, footer);
         }
         
         // 格式: suffix | 队伍名 | 玩家名
