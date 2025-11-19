@@ -289,7 +289,7 @@ public class Commands implements CommandExecutor {
 					Config.game_shop_shops.forEach((id, pl) -> {
 						if (pl.equals(game + ".shop.item - " + loc)) {
 							player.sendMessage("§f ID: §a" + id + " §f[§e" + loc.replace(",", "§f,§e") + "§f]");
-							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getName() + " {\"text\":\" \",\"extra\":[{\"text\":\"" + Config.getLanguage("button.list_teleport") + "\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/bwsbatp " + game + " " + loc + "\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"" + Config.getLanguage("show_text.list_teleport") + "\"}},{\"text\":\"  \"},{\"text\":\"" + Config.getLanguage("button.list_remove") + "\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/bedwarsscoreboardaddon:bwsba shop remove " + id + " true\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"" + Config.getLanguage("show_text.list_remove") + "\"}}]}");
+							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getName() + " {\"text\":\" \",\"extra\":[{\"text\":\"" + Config.getLanguage("button.list_teleport") + "\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/bwsbatp " + game + " " + loc + "\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"" + Config.getLanguage("show_text.list_teleport") + "\"}},{\"text\":\"  \"},{\"text\":\"" + Config.getLanguage("button.list_remove") + "\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/bwsba shop remove " + id + " true\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"" + Config.getLanguage("show_text.list_remove") + "\"}}]}");
 							player.sendMessage("");
 						}
 					});
@@ -303,7 +303,7 @@ public class Commands implements CommandExecutor {
 					Config.game_shop_shops.forEach((id, pl) -> {
 						if (pl.equals(game + ".shop.team - " + loc)) {
 							player.sendMessage("§f ID: §a" + id + " §f[§e" + loc.replace(",", "§f,§e") + "§f]");
-							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getName() + " {\"text\":\" \",\"extra\":[{\"text\":\"" + Config.getLanguage("button.list_teleport") + "\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/bwsbatp " + game + " " + loc + "\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"" + Config.getLanguage("show_text.list_teleport") + "\"}},{\"text\":\"  \"},{\"text\":\"" + Config.getLanguage("button.list_remove") + "\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/bedwarsscoreboardaddon:bwsba shop remove " + id + " true\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"" + Config.getLanguage("show_text.list_remove") + "\"}}]}");
+							Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getName() + " {\"text\":\" \",\"extra\":[{\"text\":\"" + Config.getLanguage("button.list_teleport") + "\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/bwsbatp " + game + " " + loc + "\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"" + Config.getLanguage("show_text.list_teleport") + "\"}},{\"text\":\"  \"},{\"text\":\"" + Config.getLanguage("button.list_remove") + "\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/bwsba shop remove " + id + " true\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"" + Config.getLanguage("show_text.list_remove") + "\"}}]}");
 							player.sendMessage("");
 						}
 					});
@@ -326,7 +326,7 @@ public class Commands implements CommandExecutor {
 						Config.game_team_spawners.forEach((id, pl) -> {
 							if (pl.equals(game + ".team_spawner." + team + " - " + loc)) {
 								player.sendMessage("§f ID: §a" + id + " §f[" + team + "§f]" + " §f[§e" + loc.replace(",", "§f,§e") + "§f]");
-								Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getName() + " {\"text\":\" \",\"extra\":[{\"text\":\"" + Config.getLanguage("button.list_teleport") + "\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/bwsbatp " + game + " " + loc + "\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"" + Config.getLanguage("show_text.list_teleport") + "\"}},{\"text\":\"  \"},{\"text\":\"" + Config.getLanguage("button.list_remove") + "\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/bedwarsscoreboardaddon:bwsba spawner remove " + id + " true\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"" + Config.getLanguage("show_text.list_remove") + "\"}}]}");
+								Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "tellraw " + player.getName() + " {\"text\":\" \",\"extra\":[{\"text\":\"" + Config.getLanguage("button.list_teleport") + "\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/bwsbatp " + game + " " + loc + "\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"" + Config.getLanguage("show_text.list_teleport") + "\"}},{\"text\":\"  \"},{\"text\":\"" + Config.getLanguage("button.list_remove") + "\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/bwsba spawner remove " + id + " true\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"" + Config.getLanguage("show_text.list_remove") + "\"}}]}");
 								player.sendMessage("");
 							}
 						});

@@ -547,12 +547,12 @@ public class EditGame implements Listener {
 					break;
 				case 20:
 					player.closeInventory();
-					Bukkit.dispatchCommand(player, "bedwarsscoreboardaddon:bwsba shop set item " + game_name);
+					Bukkit.dispatchCommand(player, "bwsba shop set item " + game_name);
 					Main.getInstance().getEditHolographicManager().displayGameLocation(player, game.getName());
 					break;
 				case 21:
 					player.closeInventory();
-					Bukkit.dispatchCommand(player, "bedwarsscoreboardaddon:bwsba shop set team " + game_name);
+					Bukkit.dispatchCommand(player, "bwsba shop set team " + game_name);
 					Main.getInstance().getEditHolographicManager().displayGameLocation(player, game.getName());
 					break;
 				case 22:
@@ -656,7 +656,7 @@ public class EditGame implements Listener {
 				if (itemStack != null && !itemStack.getType().equals(Material.AIR)) {
 					ItemMeta itemMeta = itemStack.getItemMeta();
 					player.closeInventory();
-					Bukkit.dispatchCommand(player, "bedwarsscoreboardaddon:bwsba spawner add " + game_name + " " + ColorUtil.removeColor(itemMeta.getDisplayName()));
+					Bukkit.dispatchCommand(player, "bwsba spawner add " + game_name + " " + ColorUtil.removeColor(itemMeta.getDisplayName()));
 					Main.getInstance().getEditHolographicManager().displayGameLocation(player, game.getName());
 				}
 			}
