@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>me.ram</groupId>
+    <groupId>neko</groupId>
     <artifactId>NekoBwScoreBoardAddon</artifactId>
     <version>2.13.1</version>
     <packaging>jar</packaging>
@@ -13,12 +13,18 @@
     <description>A plugin that enhances BedwarsRel with additional features</description>
     <url>https://github.com/TheRamU/BedwarsScoreBoardAddon</url>
 
-    <properties>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <versionstring>${project.version}</versionstring>
+    <properties>
+
+        <java.version>21</java.version>
+
+        <maven.compiler.source>21</maven.compiler.source>
+
+        <maven.compiler.target>21</maven.compiler.target>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <versionstring>${project.version}</versionstring>
+
     </properties>
 
     <repositories>
@@ -41,14 +47,6 @@
     </repositories>
 
     <dependencies>
-        <!-- Spigot 1.8.8 API -->
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.8.8-R0.1-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/spigot-1.8.8.jar</systemPath>
-        </dependency>
 
         <!-- Spigot 1.12.2 API -->
         <dependency>
@@ -59,20 +57,18 @@
             <systemPath>${project.basedir}/lib/spigot-1.12.2.jar</systemPath>
         </dependency>
 
-        <!-- Bukkit 1.8.8 API -->
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.8.8-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
+        <!-- Lombok -->
 
-        <!-- Lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
-            <scope>provided</scope>
+        <dependency>
+
+            <groupId>org.projectlombok</groupId>
+
+            <artifactId>lombok</artifactId>
+
+            <version>1.18.30</version>
+
+            <scope>provided</scope>
+
         </dependency>
 
         <!-- BedwarsRel (provided by server) -->
@@ -87,7 +83,7 @@
         <dependency>
             <groupId>com.comphenix.protocol</groupId>
             <artifactId>ProtocolLib</artifactId>
-            <version>4.5.0</version>
+            <version>5.4.0</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/ProtocolLib.jar</systemPath>
         </dependency>
@@ -149,26 +145,41 @@
     <build>
         <defaultGoal>clean package</defaultGoal>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>1.18.30</version>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
+            <plugin>
+
+                <groupId>org.apache.maven.plugins</groupId>
+
+                <artifactId>maven-compiler-plugin</artifactId>
+
+                <version>3.8.0</version>
+
+                <configuration>
+
+                    <source>21</source>
+
+                    <target>21</target>
+
+                    <annotationProcessorPaths>
+
+                        <path>
+
+                            <groupId>org.projectlombok</groupId>
+
+                            <artifactId>lombok</artifactId>
+
+                            <version>1.18.30</version>
+
+                        </path>
+
+                    </annotationProcessorPaths>
+
+                </configuration>
+
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
+                <version>3.5.3</version>
                 <executions>
                     <execution>
                         <phase>package</phase>

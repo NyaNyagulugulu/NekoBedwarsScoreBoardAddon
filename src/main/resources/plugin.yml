@@ -9,7 +9,7 @@ description: |
   #                                            #
   ##############################################
 name: NekoBwScoreBoardAddon
-main: me.ram.bedwarsscoreboardaddon.Main
+main: neko.neko.bedwarsscoreboardaddon.Main
 version: ${versionstring}
 author: 不穿胖次の小奶猫
 website: https://github.com/TheRamU/BedwarsScoreBoardAddon
