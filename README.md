@@ -3,6 +3,11 @@
 
 给原帖 https://github.com/TheRamU/BedwarsScoreBoardAddon 擦屁股并且重置修复版本
 
+# 升级事项！
+请使用java21运行！此项目已经从1.12.2往上升级。1.12.2可能无法正常运行。如果有需要的话可以使用这个核心`https://github.com/NyaNyagulugulu/NekoCore`
+
+这个核心是基于paper做的优化版本。并且攻击机制回退到1.8.未来对API，nms等的修改会在仓库的readme中标注清楚
+
 # 源作者代码里面藏了什么？
 验证`plugin.yml`是否被修改，太tm招笑了
 

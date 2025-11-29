@@ -36,7 +36,7 @@ import neko.neko.bedwarsscoreboardaddon.edit.EditGame;
 import neko.neko.bedwarsscoreboardaddon.listener.EventListener;
 import neko.neko.bedwarsscoreboardaddon.listener.GameListener;
 import neko.neko.bedwarsscoreboardaddon.listener.ShopListener;
-import neko.neko.bedwarsscoreboardaddon.listener.XPEventListener;
+
 import neko.neko.bedwarsscoreboardaddon.manager.ArenaManager;
 import neko.neko.bedwarsscoreboardaddon.manager.EditHolographicManager;
 import neko.neko.bedwarsscoreboardaddon.manager.HolographicManager;
@@ -170,7 +170,7 @@ public class Main extends JavaPlugin {
 						HandlerList.unregisterAll(listener.getListener());
 					}
 				}
-				Bukkit.getPluginManager().registerEvents(new XPEventListener(), this);
+				// We're using the file for SoundMuteListener now, no need to register XPEventListener here
 			} catch (Exception e) {
 				printMessage(prefix + getLocaleConfig().getLanguage("bedwarsxp"));
 				printMessage(prefix + getLocaleConfig().getLanguage("loading_failed"));

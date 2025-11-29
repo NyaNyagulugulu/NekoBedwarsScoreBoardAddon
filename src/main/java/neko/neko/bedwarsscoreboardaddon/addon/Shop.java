@@ -221,11 +221,24 @@ public class Shop {
 			PacketContainer packet = man.createPacket(PacketType.Play.Server.ENTITY_METADATA);
 			packet.getIntegers().write(0, entity.getEntityId());
 			// Use direct list of WrappedWatchableObject for newer ProtocolLib versions
-			List<WrappedWatchableObject> watchableObjects;
+			List<WrappedWatchableObject> watchableObjects = new ArrayList<>();
+			
+			// Hide nametag (index 3)
 			if (BedwarsRel.getInstance().getCurrentVersion().startsWith("v1_8")) {
-				watchableObjects = Arrays.asList(new WrappedWatchableObject(new WrappedDataWatcher.WrappedDataWatcherObject(3, WrappedDataWatcher.Registry.get(Byte.class)), (byte) 0));
+				watchableObjects.add(new WrappedWatchableObject(new WrappedDataWatcher.WrappedDataWatcherObject(3, WrappedDataWatcher.Registry.get(Byte.class)), (byte) 0));
 			} else {
-				watchableObjects = Arrays.asList(new WrappedWatchableObject(new WrappedDataWatcher.WrappedDataWatcherObject(3, booleanserializer), false));
+				watchableObjects.add(new WrappedWatchableObject(new WrappedDataWatcher.WrappedDataWatcherObject(3, booleanserializer), false));
+			}
+			
+			// Additionally, set the silent flag to make entity silent
+			if (!BedwarsRel.getInstance().getCurrentVersion().startsWith("v1_8")) {
+				try {
+					WrappedDataWatcher.Serializer booleanSerializer = WrappedDataWatcher.Registry.get(Boolean.class);
+					// Index 4 is typically the SILENT datawatcher field in newer versions
+					watchableObjects.add(new WrappedWatchableObject(new WrappedDataWatcher.WrappedDataWatcherObject(4, booleanSerializer), true));
+				} catch (Exception e) {
+					// Fallback if index 4 is not for silent flag in this version
+				}
 			}
 			packet.getWatchableCollectionModifier().write(0, watchableObjects);
 			for (Player player : game.getPlayers()) {

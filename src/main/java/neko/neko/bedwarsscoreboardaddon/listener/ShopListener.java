@@ -45,20 +45,75 @@ public class ShopListener implements Listener {
 	}
 
 	private void packetListener() {
-		ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(Main.getInstance(), ListenerPriority.HIGHEST, new PacketType[] { PacketType.Play.Server.ENTITY_METADATA }) {
+		ProtocolLibrary.getProtocolManager().addPacketListener(new PacketAdapter(Main.getInstance(), ListenerPriority.HIGHEST, new PacketType[] { 
+			PacketType.Play.Server.ENTITY_METADATA, 
+			PacketType.Play.Server.NAMED_SOUND_EFFECT,
+			PacketType.Play.Server.CUSTOM_SOUND_EFFECT
+		}) {
 			@Override
 			public void onPacketSending(PacketEvent e) {
 				PacketContainer packet = e.getPacket();
-				int id = packet.getIntegers().read(0);
-				if (isShopNPC(id)) {
-					// Use direct list of WrappedWatchableObject for newer ProtocolLib versions
-					List<WrappedWatchableObject> wrappedDataWatcher;
-					if (BedwarsRel.getInstance().getCurrentVersion().startsWith("v1_8")) {
-						wrappedDataWatcher = Arrays.asList(new WrappedWatchableObject(new WrappedDataWatcher.WrappedDataWatcherObject(3, WrappedDataWatcher.Registry.get(Byte.class)), (byte) 0));
-					} else {
-						wrappedDataWatcher = Arrays.asList(new WrappedWatchableObject(new WrappedDataWatcher.WrappedDataWatcherObject(3, booleanserializer), false));
+				if (packet.getType() == PacketType.Play.Server.ENTITY_METADATA) {
+					int id = packet.getIntegers().read(0);
+					if (isShopNPC(id)) {
+						// Use direct list of WrappedWatchableObject for newer ProtocolLib versions
+						List<WrappedWatchableObject> wrappedDataWatcher = new ArrayList<>();
+						
+						// Hide nametag (index 3)
+						if (BedwarsRel.getInstance().getCurrentVersion().startsWith("v1_8")) {
+							wrappedDataWatcher.add(new WrappedWatchableObject(new WrappedDataWatcher.WrappedDataWatcherObject(3, WrappedDataWatcher.Registry.get(Byte.class)), (byte) 0));
+						} else {
+							wrappedDataWatcher.add(new WrappedWatchableObject(new WrappedDataWatcher.WrappedDataWatcherObject(3, booleanserializer), false));
+						}
+						
+						// Additionally, set the silent flag to make entity silent
+						if (!BedwarsRel.getInstance().getCurrentVersion().startsWith("v1_8")) {
+							try {
+								WrappedDataWatcher.Serializer booleanSerializer = WrappedDataWatcher.Registry.get(Boolean.class);
+								// Index 4 is typically the SILENT datawatcher field in newer versions
+								wrappedDataWatcher.add(new WrappedWatchableObject(new WrappedDataWatcher.WrappedDataWatcherObject(4, booleanSerializer), true));
+							} catch (Exception ex) {
+								// Fallback if index 4 is not for silent flag in this version
+							}
+						}
+						packet.getWatchableCollectionModifier().write(0, wrappedDataWatcher);
 					}
-					packet.getWatchableCollectionModifier().write(0, wrappedDataWatcher);
+				} else if (packet.getType() == PacketType.Play.Server.NAMED_SOUND_EFFECT) {
+					// Cancel villager and blaze sound effects
+					try {
+						if (packet.getStrings().size() > 0) {
+							String soundName = packet.getStrings().read(0);
+							if (soundName != null && (soundName.toLowerCase().contains("villager") || soundName.toLowerCase().contains("blaze") || soundName.toLowerCase().contains("entity.villager") || soundName.toLowerCase().contains("entity.blaze"))) {
+								// Check if the sound is near any shop to cancel it
+								for (Arena arena : Main.getInstance().getArenaManager().getArenas().values()) {
+									if (arena.getShop() != null) {
+										e.setCancelled(true);
+										return;
+									}
+								}
+							}
+						}
+					} catch (Exception ex) {
+						// Handle potential index out of bounds errors gracefully
+					}
+				} else if (packet.getType() == PacketType.Play.Server.CUSTOM_SOUND_EFFECT) {
+					// Cancel custom villager and blaze sound effects
+					try {
+						if (packet.getStrings().size() > 0) {
+							String soundName = packet.getStrings().read(0);
+							if (soundName != null && (soundName.toLowerCase().contains("villager") || soundName.toLowerCase().contains("blaze") || soundName.toLowerCase().contains("entity.villager") || soundName.toLowerCase().contains("entity.blaze"))) {
+								// Check if the sound is near any shop to cancel it
+								for (Arena arena : Main.getInstance().getArenaManager().getArenas().values()) {
+									if (arena.getShop() != null) {
+										e.setCancelled(true);
+										return;
+									}
+								}
+							}
+						}
+					} catch (Exception ex) {
+						// Handle potential index out of bounds errors gracefully
+					}
 				}
 			}
 		});
