@@ -20,7 +20,6 @@ import neko.neko.bedwarsscoreboardaddon.addon.DeathItem;
 import neko.neko.bedwarsscoreboardaddon.addon.FastRespawn;
 import neko.neko.bedwarsscoreboardaddon.addon.GiveItem;
 import neko.neko.bedwarsscoreboardaddon.addon.HidePlayer;
-import neko.neko.bedwarsscoreboardaddon.addon.LobbyScoreBoard;
 import neko.neko.bedwarsscoreboardaddon.addon.SpawnNoBuild;
 import neko.neko.bedwarsscoreboardaddon.addon.Spectator;
 import neko.neko.bedwarsscoreboardaddon.addon.TabListManager;
@@ -245,7 +244,7 @@ public class Main extends JavaPlugin {
 	private void registerEvents() {
 		Bukkit.getPluginManager().registerEvents(new EventListener(), this);
 		Bukkit.getPluginManager().registerEvents(new GameListener(), this);
-		Bukkit.getPluginManager().registerEvents(new LobbyScoreBoard(), this);
+		
 		Bukkit.getPluginManager().registerEvents(new SpawnNoBuild(), this);
 		Bukkit.getPluginManager().registerEvents(new UpdateCheck(), this);
 		if (enabledCitizens) {

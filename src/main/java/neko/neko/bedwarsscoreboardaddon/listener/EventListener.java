@@ -74,7 +74,6 @@ public class EventListener implements Listener {
 
 	public EventListener() {
 		onPacketReceiving();
-		onPacketSending();
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -608,27 +607,7 @@ public class EventListener implements Listener {
 		ProtocolLibrary.getProtocolManager().addPacketListener(packetListener);
 	}
 
-	private void onPacketSending() {
-		PacketListener packetListener = new PacketAdapter(Main.getInstance(), ListenerPriority.HIGHEST, new PacketType[] { PacketType.Play.Server.SCOREBOARD_SCORE }) {
-			@Override
-			public void onPacketSending(PacketEvent e) {
-				PacketContainer packet = e.getPacket();
-				if (e.getPacketType().equals(PacketType.Play.Server.SCOREBOARD_SCORE)) {
-					try {
-						if (packet.getScoreboardActions().read(0).equals(ScoreboardAction.REMOVE) && packet.getStrings().read(1).equals("") && getPlayer(packet.getStrings().read(0)) != null) {
-							e.setCancelled(true);
-						}
-					} catch (IllegalArgumentException ex) {
-						// Handle different enum values in newer ProtocolLib versions
-						// For 1.12.2 compatibility, if we can't read the action, skip cancellation
-						return;
-					}
-					e.setCancelled(true);
-				}
-			}
-		};
-		ProtocolLibrary.getProtocolManager().addPacketListener(packetListener);
-	}
+	
 
 	private Player getPlayer(String name) {
 		if (name == null) {

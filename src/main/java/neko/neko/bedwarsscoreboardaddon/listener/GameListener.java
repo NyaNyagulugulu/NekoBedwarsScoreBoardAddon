@@ -34,27 +34,14 @@ import neko.neko.bedwarsscoreboardaddon.addon.SelectTeam;
 import neko.neko.bedwarsscoreboardaddon.arena.Arena;
 import neko.neko.bedwarsscoreboardaddon.config.Config;
 import neko.neko.bedwarsscoreboardaddon.events.BedwarsTeamDeadEvent;
-import neko.neko.bedwarsscoreboardaddon.utils.ScoreboardUtil;
 
 public class GameListener implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onStarted(BedwarsGameStartedEvent e) {
 		Game game = e.getGame();
-		Map<Player, Scoreboard> scoreboards = ScoreboardUtil.getScoreboards();
-		for (Player player : game.getPlayers()) {
-			if (scoreboards.containsKey(player)) {
-				ScoreboardUtil.removePlayer(player);
-			}
-		}
+		// ScoreBoard functionality has been removed
 		new Arena(game);
-		new BukkitRunnable() {
-			@Override
-			public void run() {
-				if (Main.getInstance().getArenaManager().getArenas().containsKey(game.getName())) {
-					Main.getInstance().getArenaManager().getArenas().get(game.getName()).getScoreBoard().updateScoreboard();
-				}
-			}
-		}.runTaskLater(Main.getInstance(), 2L);
+		// ScoreBoard functionality has been removed
 	}
 
 	@EventHandler
@@ -128,7 +115,6 @@ public class GameListener implements Listener {
 			}
 		}
 		Main.getInstance().getEditHolographicManager().remove(player);
-		ScoreboardUtil.removePlayer(player);
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -165,7 +151,7 @@ public class GameListener implements Listener {
 				@Override
 				public void run() {
 					if (Main.getInstance().getArenaManager().getArenas().containsKey(game.getName())) {
-						Main.getInstance().getArenaManager().getArenas().get(game.getName()).getScoreBoard().updateScoreboard();
+
 					}
 				}
 			}.runTaskLater(Main.getInstance(), 1L);

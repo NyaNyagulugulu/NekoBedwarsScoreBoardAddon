@@ -296,21 +296,7 @@ public class Config {
 	public static List<String> planinfo;
 	public static String playertag_prefix;
 	public static String playertag_suffix;
-	public static int scoreboard_interval;
-	public static List<String> scoreboard_title;
-	public static String scoreboard_you;
-	public static String scoreboard_team_bed_status_bed_alive;
-	public static String scoreboard_team_bed_status_bed_destroyed;
-	public static String scoreboard_team_status_format_bed_alive;
-	public static String scoreboard_team_status_format_bed_destroyed;
-	public static String scoreboard_team_status_format_team_dead;
-	public static Map<String, List<String>> scoreboard_lines;
-	public static boolean lobby_scoreboard_enabled;
-	public static int lobby_scoreboard_interval;
-	public static String lobby_scoreboard_state_waiting;
-	public static String lobby_scoreboard_state_countdown;
-	public static List<String> lobby_scoreboard_title;
-	public static List<String> lobby_scoreboard_lines;
+	
 	public static Map<String, List<String>> game_shop_item;
 	public static Map<String, List<String>> game_shop_team;
 	public static Map<String, String> game_shop_shops;
@@ -718,34 +704,7 @@ public class Config {
 		planinfo = new ArrayList<String>(config.getConfigurationSection("planinfo").getKeys(false));
 		playertag_prefix = ColorUtil.color(config.getString("playertag.prefix"));
 		playertag_suffix = ColorUtil.color(config.getString("playertag.suffix"));
-		scoreboard_interval = config.getInt("scoreboard.interval");
-		scoreboard_title = ColorUtil.colorList(config.getStringList("scoreboard.title"));
-		scoreboard_you = ColorUtil.color(config.getString("scoreboard.you"));
-		scoreboard_team_bed_status_bed_alive = ColorUtil.color(config.getString("scoreboard.team_bed_status.bed_alive"));
-		scoreboard_team_bed_status_bed_destroyed = ColorUtil.color(config.getString("scoreboard.team_bed_status.bed_destroyed"));
-		scoreboard_team_status_format_bed_alive = ColorUtil.color(config.getString("scoreboard.team_status_format.bed_alive"));
-		scoreboard_team_status_format_bed_destroyed = ColorUtil.color(config.getString("scoreboard.team_status_format.bed_destroyed"));
-		scoreboard_team_status_format_team_dead = ColorUtil.color(config.getString("scoreboard.team_status_format.team_dead"));
-		scoreboard_lines = new HashMap<String, List<String>>();
-		for (String key : config.getConfigurationSection("scoreboard.lines").getKeys(false)) {
-			scoreboard_lines.put(key, ColorUtil.colorList(config.getStringList("scoreboard.lines." + key)));
-		}
-		lobby_scoreboard_enabled = config.getBoolean("lobby_scoreboard.enabled");
-		lobby_scoreboard_interval = config.getInt("lobby_scoreboard.interval");
-		lobby_scoreboard_state_waiting = ColorUtil.color(config.getString("lobby_scoreboard.state.waiting"));
-		lobby_scoreboard_state_countdown = ColorUtil.color(config.getString("lobby_scoreboard.state.countdown"));
-		lobby_scoreboard_title = ColorUtil.colorList(config.getStringList("lobby_scoreboard.title"));
-		lobby_scoreboard_lines = new ArrayList<String>();
-		for (String w : config.getStringList("lobby_scoreboard.lines")) {
-			String line = ColorUtil.color(w);
-			if (lobby_scoreboard_lines.size() < 15) {
-				if (lobby_scoreboard_lines.contains(line)) {
-					lobby_scoreboard_lines.add(conflict(lobby_scoreboard_lines, line));
-				} else {
-					lobby_scoreboard_lines.add(line);
-				}
-			}
-		}
+		
 		loadGameConfig();
 		loadImages();
 		if (fast_respawn) {

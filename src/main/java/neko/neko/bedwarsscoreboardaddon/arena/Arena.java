@@ -40,7 +40,7 @@ import neko.neko.bedwarsscoreboardaddon.addon.PlaySound;
 import neko.neko.bedwarsscoreboardaddon.addon.Rejoin;
 import neko.neko.bedwarsscoreboardaddon.addon.ResourceUpgrade;
 import neko.neko.bedwarsscoreboardaddon.addon.Respawn;
-import neko.neko.bedwarsscoreboardaddon.addon.ScoreBoard;
+
 import neko.neko.bedwarsscoreboardaddon.addon.Shop;
 import neko.neko.bedwarsscoreboardaddon.addon.TimeTask;
 import neko.neko.bedwarsscoreboardaddon.addon.teamshop.TeamShop;
@@ -53,8 +53,7 @@ public class Arena {
 
 	@Getter
 	private Game game;
-	@Getter
-	private ScoreBoard scoreBoard;
+	
 	@Getter
 	private PlayerGameStorage playerGameStorage;
 	@Getter
@@ -95,7 +94,7 @@ public class Arena {
 		this.game = game;
 		gameTasks = new ArrayList<BukkitTask>();
 		playerGameStorage = new PlayerGameStorage(this);
-		scoreBoard = new ScoreBoard(this);
+		
 		deathMode = new DeathMode(this);
 		healthLevel = new HealthLevel(this);
 		noBreakBed = new NoBreakBed(this);
